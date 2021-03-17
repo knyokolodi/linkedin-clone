@@ -17,7 +17,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Widgets from '../Widgets/Widgets';
 
 const Feed = () => {
-  const { email, fullName: name } = useSelector(selectUser);
+  const { fullName: name } = useSelector(selectUser);
 
   const [message, setMessage] = useState('');
   const [posts, setPosts] = useState([]);
