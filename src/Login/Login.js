@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { auth } from '../firebase';
 import { login } from '../features/userSlice';

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { login, logout, selectUser } from './features/userSlice';
+import { login, logout } from './features/userSlice';
 import './App.css';
 import Feed from './Feed/Feed';
-import { useSelector } from 'react-redux';
 import Login from './Login/Login';
 import { auth } from './firebase';
 import { useDispatch } from 'react-redux';
@@ -11,7 +10,6 @@ import PrivateRoute from './PrivateRoute';
 import Register from './Register/Register';
 
 const App = () => {
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
