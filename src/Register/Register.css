@@ -41,7 +41,7 @@
   color: rgba(0, 0, 0, 0.9);
   border: 1px gray solid;
   border-radius: 4px !important;
-  margin-bottom: 0px!important;
+  margin-bottom: 0px !important;
 }
 
 .login > form > button {
@@ -78,4 +78,16 @@
   border-radius: 8px;
   margin: 0 auto;
   background: #fff;
+}
+
+.input__error {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: solid #d11124 2px !important;
+  margin: 0;
+}
+.error {
+  color: #d11124;
+  padding-bottom: 10px;
+  font-size: 11px;
 }

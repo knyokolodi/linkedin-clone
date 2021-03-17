@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { auth } from '../firebase';
 import './Register.css';
 import { useHistory, Link } from 'react-router-dom';
 import { login } from '../features/userSlice';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  fullName: yup.string().required('Please enter fullname').min(6),
+  email: yup.string().required('Please enter email').email(),
+  password: yup.string().required('Please enter password').min(6),
+});
 
 const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
   });
 
-  const register = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async ({ email, password, fullName }) => {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
@@ -37,36 +42,38 @@ const Register = () => {
     }
   };
 
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const { fullName, email, password } = formData;
   return (
     <div className='login'>
       <img src='/linkedIn.png' alt='' />
       <h2>Sign up</h2>
       <p>Stay updated on your professional world</p>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type='text'
-          value={fullName}
           name='fullName'
           placeholder='Full name'
-          onChange={onChange}
+          ref={register}
+          className={errors.fullName ? 'input__error' : ''}
         />
-        <input type='email' value={email} name='email' placeholder='Email' onChange={onChange} />
+        <span className='error'>{errors.fullName?.message}</span>
+        <input
+          type='email'
+          name='email'
+          placeholder='Email'
+          ref={register}
+          className={errors.email ? 'input__error' : ''}
+        />
+        <span className='error'>{errors.email?.message}</span>
         <input
           type='password'
-          value={password}
           name='password'
           placeholder='Password'
-          onChange={onChange}
           autoComplete='on'
+          ref={register}
+          className={errors.email ? 'input__error' : ''}
         />
-        <button type='submit' onClick={register}>
-          Agree & join
-        </button>
+        <span className='error'>{errors.password?.message}</span>
+        <button type='submit'>Agree & join</button>
       </form>
       <p>
         NAlready on LinkedIn?{' '}

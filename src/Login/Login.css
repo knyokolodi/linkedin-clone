@@ -41,7 +41,7 @@
   color: rgba(0, 0, 0, 0.9);
   border: 1px gray solid;
   border-radius: 4px !important;
-  margin-bottom: 0px!important;
+  margin-bottom: 0px !important;
 }
 
 .login > form > button {
@@ -90,4 +90,5 @@
 .error {
   color: #d11124;
   padding-bottom: 10px;
+  font-size: 11px;
 }
