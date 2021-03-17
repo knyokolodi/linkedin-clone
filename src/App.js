@@ -13,27 +13,25 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const LoginOrLogout = async () => {
-      try {
-        const userAuth = await auth.onAuthStateChanged();
-        if (userAuth) {
-          dispatch(
-            login({
-              fullName: userAuth.fullName,
-              email: userAuth.email,
-              uid: userAuth.uid,
-            })
-          );
-        } else {
-          dispatch(logout());
-        }
-      } catch (error) {}
-    };
-    
     LoginOrLogout();
   }, []);
 
- 
+  const LoginOrLogout = async () => {
+    try {
+      const userAuth = await auth.onAuthStateChanged();
+      if (userAuth) {
+        dispatch(
+          login({
+            fullName: userAuth.fullName,
+            email: userAuth.email,
+            uid: userAuth.uid,
+          })
+        );
+      } else {
+        dispatch(logout());
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className='app'>
