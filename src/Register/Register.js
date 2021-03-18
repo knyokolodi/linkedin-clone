@@ -76,7 +76,7 @@ const Register = () => {
         <button type='submit'>Agree & join</button>
       </form>
       <p>
-        NAlready on LinkedIn?{' '}
+        Already on LinkedIn?{' '}
         <span>
           <Link className='login__register' to='/'>
             Sign in
